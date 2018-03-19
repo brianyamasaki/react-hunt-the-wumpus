@@ -1,0 +1,12 @@
+{
+  "mazes": [
+    {
+      "title": "Example Maze 1",
+      "url": "/data/maze1.json"
+    },
+    {
+      "title": "Example Maze 2",
+      "url": "/data/maze2.json"
+    }
+  ]
+}
