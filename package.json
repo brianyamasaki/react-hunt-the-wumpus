@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "3",
+    "he": "^1.1.1",
     "history": "^4.7.2",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
@@ -18,7 +19,8 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

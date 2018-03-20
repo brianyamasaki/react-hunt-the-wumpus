@@ -19,6 +19,7 @@ class Cave extends Component {
       changePage('/wumpus');
     }
   }
+
   renderConnection(connection, i) {
     return (
       <li key={i}>
@@ -32,8 +33,8 @@ class Cave extends Component {
     const caveId = match.params.id;
     if (caveId && mazeData && mazeData.maze) {
       return (
-        <ul>
-          {mazeData.maze[caveId].exits.map(this.renderConnection.bind(this))}
+        <ul className="connections">
+          {mazeData.maze[caveId].connections.map(this.renderConnection.bind(this))}
         </ul>
       );
 
@@ -48,6 +49,9 @@ class Cave extends Component {
         <h1 className="text-center">Cave {caveId}</h1>
         <div className="cave">
           {this.renderConnections()}
+        </div>
+        <div className="text-center">
+          <Link to={'/wumpus'}>Back to cave overview</Link>
         </div>
       </div> 
     );

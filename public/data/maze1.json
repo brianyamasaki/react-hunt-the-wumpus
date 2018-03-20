@@ -2,23 +2,23 @@
   "maze": [
     {
       "room": 0,
-      "exits": [1,2,3]
+      "connections": [1,2,3]
     },
     {
       "room": 1,
-      "exits": [2,3,4]
+      "connections": [2,3,4]
     },
     {
       "room": 2,
-      "exits": [3,4]
+      "connections": [3,4, 0]
     },
     {
       "room": 3,
-      "exits": [1,2]
+      "connections": [1,2]
     },
     {
       "room": 4,
-      "exits": [1,4]
+      "connections": [1,4, 0]
     }
   ]
 

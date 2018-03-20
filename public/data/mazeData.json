@@ -5,8 +5,8 @@
       "url": "/data/maze1.json"
     },
     {
-      "title": "Example Maze 2",
-      "url": "/data/maze2.json"
+      "title": "Maze won't be found",
+      "url": "/data/maze000.json"
     }
   ]
 }

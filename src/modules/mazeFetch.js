@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoading: false,
         maze: [],
-        errorMsg: action.payload
+        errorMsg: 'Maze not found'
       }
     default: 
       return state;

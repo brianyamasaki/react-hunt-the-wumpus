@@ -20,7 +20,7 @@ class Game extends Component {
   }
 
   renderMazeCave(cave, i) {
-    const connections = cave.exits.map(item => item + 1);
+    const connections = cave.connections.map(item => item + 1);
     return (
       <div className="cave" key={i}>
         <Link to={`/cave/${i}`}>
@@ -55,6 +55,17 @@ class Game extends Component {
     return <p />;
   }
 
+  renderMazesState() {
+    const { mazeData } = this.props;
+    if (mazeData) {
+      if (mazeData.isLoading) {
+        return <h3 className="text-center">Loading...</h3>
+      } else if (mazeData.errorMsg) {
+        return <h3 className="text-center">{mazeData.errorMsg}</h3>;
+      }
+    }
+  }
+
   render() {
     return (
       <div className="game">
@@ -63,6 +74,7 @@ class Game extends Component {
           {this.renderMazeCaves()}
         </div>
         {this.renderMazes()}
+        {this.renderMazesState()}
       </div>        
     );
   }
