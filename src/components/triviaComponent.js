@@ -23,12 +23,14 @@ class Trivia extends Component {
       </div>
     )
   }
+
   renderQuestions() {
     const { trivia } = this.props;
     if (trivia.questions && trivia.questions.length) {
       return trivia.questions.map(this.renderQuestion.bind(this));
     }
   }
+  
   render() {
     return (
       <div>

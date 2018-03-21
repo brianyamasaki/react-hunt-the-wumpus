@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { fetchMazes } from '../../modules/mazesFetch';
 import { fetchMaze } from '../../modules/mazeFetch';
+import { playerMove } from '../../modules/player';
 
 import './index.css';
 
@@ -15,17 +16,29 @@ class Game extends Component {
   }
 
   onClickMaze(evt, i) {
-    const { mazes } = this.props;
-    this.props.fetchMaze(mazes.mazes[i].url);
+    const { mazes, fetchMaze } = this.props;
+    fetchMaze(mazes.mazes[i].url);
+  }
+
+  onClickCave(evt, i) {
+    const { playerMove } = this.props;
+    playerMove(i);
+  }
+
+  renderWumpus(iCave) {
+    const { wumpusCave } = this.props;
+    if (wumpusCave === iCave) {
+      return <p className="text-center">Wumpus</p>;
+    }
   }
 
   renderMazeCave(cave, i) {
     const connections = cave.connections.map(item => item + 1);
     return (
       <div className="cave" key={i}>
-        <Link to={`/cave/${i}`}>
-        <p className="text-center">Cave {i + 1}</p>
-        <p className="text-center">Leads to {connections.join(', ')}</p>
+        <Link to={`/cave/${i}`} onClick={(e) => this.onClickCave(e, i)} >
+          <p className="text-center">Cave {i + 1}</p>
+          <p className="text-center">Leads to {connections.join(', ')}</p>
         </Link>
       </div>
     )
@@ -81,11 +94,12 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazes, mazeData } = state;
+  const { mazes, mazeData, wumpus } = state;
   return {
     mazes: mazes.obj,
     isLoading: mazes.isLoading,
-    mazeData
+    mazeData,
+    wumpusCave: wumpus.currentCave
   };
 }
 
@@ -94,6 +108,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchMazes,
       fetchMaze,
+      playerMove,
       changePage: url => push(url)
     },
     dispatch

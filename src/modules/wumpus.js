@@ -1,24 +1,29 @@
-export const WUMPUS_INIT = "WUMPUS_INIT";
-export const WUMPUS_MOVE = "WUMPUS_MOVE";
+export const WUMPUS_INIT = 'WUMPUS_INIT';
+export const WUMPUS_MOVE = 'WUMPUS_INIT';
 
 const initialState = {
-  caveIndex: '',
+  currentCave: ''
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case WUMPUS_INIT:
-      const caveIndex = Math.trunc(Math.random() * state.mazeData.maze.length);
+      let currentCave = '';
+      if (action.payload) {
+        currentCave = Math.trunc(Math.random()*action.payload);
+      }
+      console.log('wumpus is in cave ' + (currentCave + 1));
       return {
-        caveIndex
+        currentCave
       };
     default: 
       return state;
   }
 }
 
-export const wumpusInit = () => {
+export const wumpusInit = caves => {
   return {
-    type: WUMPUS_INIT
+    type: WUMPUS_INIT,
+    payload: caves.length
   };
 }

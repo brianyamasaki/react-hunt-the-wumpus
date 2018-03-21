@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { getPlayerWumpusState, PLAYER_NEAR_WUMPUS, PLAYER_WITH_WUMPUS } from '../../modules/selectors/wumpus';
+import { playerMove } from '../../modules/player';
 
 import './cave.css';
 
@@ -12,32 +14,48 @@ class Cave extends Component {
     const {
       match,
       changePage,
-      mazeData
+      maze
     } = this.props;
     const id = match.params.id;
-    if (!id || !mazeData || !mazeData.maze) {
+    if (!id || !maze) {
       changePage('/wumpus');
     }
+  }
+
+  onClickCave(cave) {
+    this.props.playerMove(cave);
   }
 
   renderConnection(connection, i) {
     return (
       <li key={i}>
-        <Link to={`/cave/${connection}`}>Move to {connection + 1}</Link>
+        <Link to={`/cave/${connection}`} onClick={() => this.onClickCave(connection)}>Move to {connection + 1}</Link>
       </li>
     );
   }
 
   renderConnections() {
-    const { mazeData, match } = this.props;
+    const { maze, match } = this.props;
     const caveId = match.params.id;
-    if (caveId && mazeData && mazeData.maze) {
+    if (caveId && maze) {
       return (
         <ul className="connections">
-          {mazeData.maze[caveId].connections.map(this.renderConnection.bind(this))}
+          {maze[caveId].connections.map(this.renderConnection.bind(this))}
         </ul>
       );
 
+    }
+  }
+
+  renderWumpus() {
+    const { wumpusState } = this.props;
+    switch(wumpusState) {
+      case PLAYER_NEAR_WUMPUS:
+        return <p>I smell a Wumpus</p>;
+      case PLAYER_WITH_WUMPUS:
+        return <p>Wumpus in cave</p>;
+      default:
+        return;
     }
   }
 
@@ -50,8 +68,9 @@ class Cave extends Component {
         <div className="cave">
           {this.renderConnections()}
         </div>
+        {this.renderWumpus()}
         <div className="text-center">
-          <Link to={'/wumpus'}>Back to cave overview</Link>
+          <h3><Link to={'/wumpus'}>Back to cave overview</Link></h3>
         </div>
       </div> 
     );
@@ -59,15 +78,18 @@ class Cave extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData } = state;
+  const { mazeData, wumpus } = state;
   return {
-    mazeData
+    maze: mazeData.maze,
+    wumpusCave: wumpus.currentCave,
+    wumpusState: getPlayerWumpusState(state)
   };
 }
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      playerMove,
       changePage: url => push(url)
     },
     dispatch
