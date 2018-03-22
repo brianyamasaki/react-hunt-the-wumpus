@@ -1,0 +1,15 @@
+.questionContainer {
+  padding: 10px;
+  .question {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  li {
+    font-size: 16px;
+    margin-top: 2px;
+    &:hover {
+      background-color: #ccc;
+      cursor: pointer;
+    }
+  }
+}

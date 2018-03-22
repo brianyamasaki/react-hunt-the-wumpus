@@ -4,7 +4,10 @@ import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getPlayerWumpusState, PLAYER_NEAR_WUMPUS, PLAYER_WITH_WUMPUS } from '../../modules/selectors/wumpus';
+import { isPlayerInPit } from '../../modules/selectors/pits';
+import { isPlayerWithBat } from '../../modules/selectors/bats';
 import { playerMove } from '../../modules/player';
+import { batMovesPlayer } from '../../modules/bats';
 
 import './cave.css';
 
@@ -19,6 +22,21 @@ class Cave extends Component {
     const id = match.params.id;
     if (!id || !maze) {
       changePage('/wumpus');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { changePage, batMovesPlayer, maze, player } = this.props;
+    if (nextProps.isPlayerInPit) {
+      setTimeout(() => {
+        changePage('/wumpus');
+      }, 5000);
+    }
+    if (nextProps.isPlayerWithBat) {
+      setTimeout(() => {
+        batMovesPlayer(maze, player.currentCave);
+        console.log('player gets taken to a new room');
+      }, 5000);
     }
   }
 
@@ -59,6 +77,20 @@ class Cave extends Component {
     }
   }
 
+  renderPitStatus() {
+    const { isPlayerInPit } = this.props;
+    if (isPlayerInPit) {
+      return <p>Player fell into a pit! Game over</p>;
+    }
+  }
+
+  renderBatStatus() {
+    const { isPlayerWithBat } = this.props;
+    if (isPlayerWithBat) {
+      return <p>Player got taken by bat</p>;
+    }
+  }
+
   render() {
     const { match } = this.props;
     const caveId = parseInt(match.params.id, 10) + 1;
@@ -69,6 +101,8 @@ class Cave extends Component {
           {this.renderConnections()}
         </div>
         {this.renderWumpus()}
+        {this.renderPitStatus()}
+        {this.renderBatStatus()}
         <div className="text-center">
           <h3><Link to={'/wumpus'}>Back to cave overview</Link></h3>
         </div>
@@ -78,11 +112,14 @@ class Cave extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData, wumpus } = state;
+  const { mazeData, wumpus, player } = state;
   return {
     maze: mazeData.maze,
     wumpusCave: wumpus.currentCave,
-    wumpusState: getPlayerWumpusState(state)
+    wumpusState: getPlayerWumpusState(state),
+    isPlayerInPit: isPlayerInPit(state),
+    isPlayerWithBat: isPlayerWithBat(state),
+    player
   };
 }
 
@@ -90,6 +127,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       playerMove,
+      batMovesPlayer,
       changePage: url => push(url)
     },
     dispatch

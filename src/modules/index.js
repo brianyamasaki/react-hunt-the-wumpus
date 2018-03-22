@@ -5,6 +5,8 @@ import mazesReducer from './mazesFetch';
 import triviaReducer from './trivia';
 import wumpusReducer from './wumpus';
 import playerReducer from './player';
+import pitsReducer from './pits';
+import batsReducer from './bats';
 
 export default combineReducers({
   routing: routerReducer,
@@ -12,5 +14,7 @@ export default combineReducers({
   mazeData: mazeFetchReducer,
   trivia: triviaReducer,
   wumpus: wumpusReducer,
-  player: playerReducer
+  player: playerReducer,
+  pits: pitsReducer,
+  bats: batsReducer
 });

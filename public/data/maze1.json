@@ -14,7 +14,7 @@
     },
     {
       "room": 3,
-      "connections": [1, 2, 3]
+      "connections": [1, 2]
     },
     {
       "room": 4,

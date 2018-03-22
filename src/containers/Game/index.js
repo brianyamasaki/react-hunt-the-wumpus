@@ -6,13 +6,16 @@ import { bindActionCreators } from 'redux';
 import { fetchMazes } from '../../modules/mazesFetch';
 import { fetchMaze } from '../../modules/mazeFetch';
 import { playerMove } from '../../modules/player';
+import { fetchTrivia } from '../../modules/trivia';
 
 import './index.css';
 
 class Game extends Component {
 
   componentDidMount() {
-    this.props.fetchMazes();
+    const { fetchMazes, fetchTrivia } = this.props;
+    fetchMazes();
+    fetchTrivia(40);
   }
 
   onClickMaze(evt, i) {
@@ -106,6 +109,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchTrivia,
       fetchMazes,
       fetchMaze,
       playerMove,

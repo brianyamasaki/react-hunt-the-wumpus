@@ -1,8 +1,11 @@
 import React from 'react';
-import Trivia from '../../components/triviaComponent';
+import { Modal } from 'react-bootstrap';
+import DisplayQuestion from '../../components/trivia/displayQuestion';
 
 export default () => (
   <div>
-    <Trivia />
+    <Modal show={true} closeButton>
+      <DisplayQuestion />
+    </Modal>
   </div>
 );
