@@ -8,6 +8,7 @@ import { isPlayerInPit } from '../../modules/selectors/pits';
 import { isPlayerWithBat } from '../../modules/selectors/bats';
 import { playerMove } from '../../modules/player';
 import { batMovesPlayer } from '../../modules/bats';
+import { purseAdd } from '../../modules/purse'
 
 import './cave.css';
 
@@ -41,7 +42,9 @@ class Cave extends Component {
   }
 
   onClickCave(cave) {
-    this.props.playerMove(cave);
+    const { playerMove, purseAdd } = this.props;
+    playerMove(cave);
+    purseAdd(1);
   }
 
   renderConnection(connection, i) {
@@ -91,6 +94,22 @@ class Cave extends Component {
     }
   }
 
+  renderArrowCount() {
+    const { arrowCount } = this.props;
+    if (arrowCount === 1) {
+      return <p>1 arrow remaining</p>;
+    }
+    return <p>{arrowCount} arrows in quiver</p>;
+  }
+
+  renderCoinCount() {
+    const { coins } = this.props;
+    if (coins === 1) {
+      return <p>1 coint remaining</p>;
+    }
+    return <p>{coins} coins in purse</p>;
+  }
+
   render() {
     const { match } = this.props;
     const caveId = parseInt(match.params.id, 10) + 1;
@@ -103,6 +122,8 @@ class Cave extends Component {
         {this.renderWumpus()}
         {this.renderPitStatus()}
         {this.renderBatStatus()}
+        {this.renderArrowCount()}
+        {this.renderCoinCount()}
         <div className="text-center">
           <h3><Link to={'/wumpus'}>Back to cave overview</Link></h3>
         </div>
@@ -112,14 +133,16 @@ class Cave extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData, wumpus, player } = state;
+  const { mazeData, wumpus, player, arrows, purse } = state;
   return {
     maze: mazeData.maze,
     wumpusCave: wumpus.currentCave,
     wumpusState: getPlayerWumpusState(state),
     isPlayerInPit: isPlayerInPit(state),
     isPlayerWithBat: isPlayerWithBat(state),
-    player
+    player,
+    arrowCount: arrows.count,
+    coins: purse.amount
   };
 }
 
@@ -128,6 +151,7 @@ const mapDispatchToProps = dispatch =>
     {
       playerMove,
       batMovesPlayer,
+      purseAdd,
       changePage: url => push(url)
     },
     dispatch

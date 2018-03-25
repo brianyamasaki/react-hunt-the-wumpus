@@ -40,7 +40,7 @@ class Game extends Component {
     return (
       <div className="cave" key={i}>
         <Link to={`/cave/${i}`} onClick={(e) => this.onClickCave(e, i)} >
-          <p className="text-center">Cave {i + 1}</p>
+          <p className="text-center">Room {i + 1}</p>
           <p className="text-center">Leads to {connections.join(', ')}</p>
         </Link>
       </div>

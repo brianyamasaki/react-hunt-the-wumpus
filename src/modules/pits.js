@@ -1,6 +1,7 @@
 export const PIT_INIT = 'PIT_INIT';
 
 const initialState = {
+  pitCount: 1,
   pitCaves: []
 };
 
@@ -9,6 +10,7 @@ export default (state = initialState, action) => {
     case PIT_INIT:
       return {
         // currently only one pit
+        ...state,
         pitCaves: [Math.trunc(Math.random() * action.payload)]
       };
     default:

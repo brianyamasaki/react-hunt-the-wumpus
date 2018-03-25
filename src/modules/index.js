@@ -7,6 +7,9 @@ import wumpusReducer from './wumpus';
 import playerReducer from './player';
 import pitsReducer from './pits';
 import batsReducer from './bats';
+import purseReducer from './purse';
+import arrowsReducer from './arrows';
+import gameOverReducer from './gameOver';
 
 export default combineReducers({
   routing: routerReducer,
@@ -16,5 +19,8 @@ export default combineReducers({
   wumpus: wumpusReducer,
   player: playerReducer,
   pits: pitsReducer,
-  bats: batsReducer
+  bats: batsReducer,
+  purse: purseReducer,
+  arrows: arrowsReducer,
+  gameOver: gameOverReducer
 });

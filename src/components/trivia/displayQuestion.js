@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
 import he from 'he';
 import { connect } from 'react-redux';
-
-import { fetchTrivia } from '../../modules/trivia';
+import { purseSubtract } from '../../modules/purse';
+import { gameOver } from '../../modules/gameOver';
+import { isGameOver } from '../../modules/selectors/gameOver'
 
 import './displayQuestion.css';
 
 class DisplayQuestion extends Component {
-
   static defaultProps = {
-    answeredCorrectly: () =>{}
+    isCorrect: () =>{}
   }
 
+  state = {
+    question: ''
+  };
+
   componentDidMount() {
-    this.props.fetchTrivia(1);
+    const { question, purseSubtract } = this.props;
+    if (question) {
+      this.setState({
+        question
+      });
+      purseSubtract(1);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { isGameOver, gameOver } = this.props;
+    if (nextProps.question !== this.state.question) {
+      this.setState({
+        question: nextProps.question
+      });
+      this.props.purseSubtract(1);
+    }
+    if (isGameOver) {
+      gameOver('You ran out of coins');
+    }
+    
   }
 
   onClickOption(i) {
-    this.props.answeredCorrectly(i === 3);
+    this.props.isCorrect(i === 3);
   }
 
   renderOptions(option, i) {
@@ -25,10 +49,9 @@ class DisplayQuestion extends Component {
   }
 
   renderQuestion() {
-    const { trivia } = this.props;
-    if (trivia.questionStore.length > 0) {
-      const question = trivia.questionStore[0];
-      // correct answer is always option D
+    const { question } = this.state;
+    if (question) {
+      // correct answer is always option 4
       const answers = question.incorrect_answers.concat(question.correct_answer);
       return (
         <div>
@@ -49,14 +72,15 @@ class DisplayQuestion extends Component {
     );
   }
 }
-
 const mapStateToProps = state => {
-  const { trivia } = state;
+  const { isGameOver } = this.props;
   return {
-    trivia
+    isGameOver: isGameOver(state)
   }
 }
 
-export default connect(mapStateToProps, {
-  fetchTrivia
+export default connect(mapStateToProps, null, {
+  purseSubtract,
+  gameOver,
+  isGameOver
 })(DisplayQuestion);

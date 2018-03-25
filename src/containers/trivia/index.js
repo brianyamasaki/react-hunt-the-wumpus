@@ -1,11 +1,13 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
-import DisplayQuestion from '../../components/trivia/displayQuestion';
+import TrivialModal from '../../components/trivia/triviaModal';
 
 export default () => (
   <div>
-    <Modal show={true} closeButton>
-      <DisplayQuestion />
-    </Modal>
+    <TrivialModal
+      minCorrect={2}
+      maxTries={3}
+      success={f => console.log('TrivialModal returns ' + f) }
+      show={true}
+    />
   </div>
 );

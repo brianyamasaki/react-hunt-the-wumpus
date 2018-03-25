@@ -4,6 +4,7 @@ export const BAT_MOVES_PLAYER = 'BAT_MOVES_PLAYER';
 export const BAT_MOVES = 'BAT_MOVES';
 
 const initialState = {
+  batCount: 1,
   batCaves: []
 };
 
@@ -11,6 +12,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case BAT_INIT:
       return {
+        ...state,
         batCaves: action.payload
       };
     default:
@@ -19,7 +21,7 @@ export default (state = initialState, action) => {
 }
 
 export const batsInit = (caves) => {
-  // currently only one pit in the game
+  // currently only one bat in the game
   return {
     type: BAT_INIT,
     payload: [Math.trunc(Math.random() * caves.length)]
