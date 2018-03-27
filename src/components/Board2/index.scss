@@ -1,0 +1,31 @@
+.gameBoard {
+  position: relative;
+  color: white;
+  img {
+    width: 100%;
+  }
+  .room {
+    position: absolute;
+    text-align: center;
+    background: url('hex_white.png') center top no-repeat;
+    background-size: 90%;
+    color: black;
+    &.virtual {
+      background-image: url('hex_dark.png');
+      color: white;
+    }
+    &:hover {
+      background-image: url('hex_light.png');
+      cursor: pointer;
+    }
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    p {
+      margin: 40px 0;
+      font-size: 22px;
+    }
+  }
+}

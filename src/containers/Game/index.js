@@ -7,6 +7,7 @@ import { fetchMazes } from '../../modules/mazesFetch';
 import { fetchMaze } from '../../modules/mazeFetch';
 import { playerMove } from '../../modules/player';
 import { fetchTrivia } from '../../modules/trivia';
+import Board2 from '../../components/Board2';
 
 import './index.css';
 
@@ -82,6 +83,13 @@ class Game extends Component {
     }
   }
 
+  renderBoard() {
+    const { mazeData } = this.props;
+    if (mazeData.imgUrl) {
+      return <Board2 />;
+    }
+  }
+
   render() {
     return (
       <div className="game">
@@ -91,7 +99,8 @@ class Game extends Component {
         </div>
         {this.renderMazes()}
         {this.renderMazesState()}
-      </div>        
+        {this.renderBoard()}
+      </div>
     );
   }
 }

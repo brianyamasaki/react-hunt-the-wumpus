@@ -9,6 +9,7 @@ export const FETCH_MAZE_FAIL = "FETCH_MAZE_FAIL";
 
 const initialState = {
   maze: '',
+  imgUrl: '',
   isLoading: false,
   errorMsg: ''
 };
@@ -25,13 +26,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        maze: action.payload.maze
+        maze: action.payload.maze,
+        imgUrl: action.payload.imgUrl
       };
     case FETCH_MAZE_FAIL:
       return {
         ...state,
         isLoading: false,
         maze: [],
+        imgUrl: '',
         errorMsg: 'Maze not found'
       }
     default: 

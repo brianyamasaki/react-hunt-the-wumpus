@@ -1,0 +1,330 @@
+{
+  "heightDenominator": 15,
+  "widthDenominator": 9,
+  "rooms": [
+    {
+      "iCave": 25,
+      "real": false,
+      "x": 2,
+      "y": 1
+    },
+    {
+      "iCave": 27,
+      "real": false,
+      "x": 4,
+      "y": 1
+    },
+    {
+      "iCave": 29,
+      "real": false,
+      "x": 6,
+      "y": 1
+    },
+    {
+      "iCave": 30,
+      "real": false,
+      "y": 2,
+      "x": 1
+    },
+    {
+      "iCave": 26,
+      "real": false,
+      "x": 3,
+      "y": 2
+    },
+    {
+      "iCave": 28,
+      "real": false,
+      "x": 5,
+      "y": 2
+    },
+    {
+      "iCave": 30,
+      "real": false,
+      "x": 7,
+      "y": 2
+    },
+    {
+      "iCave": 1,
+      "real": false,
+      "x": 8,
+      "y": 3
+    },
+    {
+      "iCave": 1,
+      "real": true,
+      "y": 3,
+      "x": 2
+    },
+    {
+      "iCave": 2,
+      "real": true,
+      "y": 4,
+      "x": 3
+    },
+    {
+      "iCave": 3,
+      "real": true,
+      "y": 3,
+      "x": 4
+    },
+    {
+      "iCave": 4,
+      "real": true,
+      "y": 4,
+      "x": 5
+    },
+    {
+      "iCave": 5,
+      "real": true,
+      "y": 3,
+      "x": 6
+    },
+    {
+      "iCave": 6,
+      "real": true,
+      "y": 4,
+      "x": 7
+    },
+    {
+      "iCave": 6,
+      "real": false,
+      "y": 4,
+      "x": 1
+    },
+    {
+      "iCave": 7,
+      "real": true,
+      "y": 5,
+      "x": 2
+    },
+    {
+      "iCave": 8,
+      "real": true,
+      "y": 6,
+      "x": 3
+    },
+    {
+      "iCave": 9,
+      "real": true,
+      "y": 5,
+      "x": 4
+    },
+    {
+      "iCave": 10,
+      "real": true,
+      "y": 6,
+      "x": 5
+    },
+    {
+      "iCave": 11,
+      "real": true,
+      "y": 5,
+      "x": 6
+    },
+    {
+      "iCave": 12,
+      "real": true,
+      "y": 6,
+      "x": 7
+    },
+    {
+      "iCave": 7,
+      "real": false,
+      "y": 5,
+      "x": 8
+    },
+    {
+      "iCave": 12,
+      "real": false,
+      "y": 6,
+      "x": 1
+    },
+    {
+      "iCave": 13,
+      "real": true,
+      "y": 7,
+      "x": 2
+    },
+    {
+      "iCave": 15,
+      "real": true,
+      "y": 7,
+      "x": 4
+    },
+    {
+      "iCave": 17,
+      "real": true,
+      "y": 7,
+      "x": 6
+    },
+    {
+      "iCave": 13,
+      "real": false,
+      "y": 7,
+      "x": 8
+    },
+    {
+      "iCave": 18,
+      "real": false,
+      "y": 8,
+      "x": 1
+    },
+    {
+      "iCave": 14,
+      "real": true,
+      "y": 8,
+      "x": 3
+    },
+    {
+      "iCave": 16,
+      "real": true,
+      "y": 8,
+      "x": 5
+    },
+    {
+      "iCave": 18,
+      "real": true,
+      "y": 8,
+      "x": 7
+    },
+    {
+      "iCave": 19,
+      "real": true,
+      "y": 9,
+      "x": 2
+    },
+    {
+      "iCave": 21,
+      "real": true,
+      "y": 9,
+      "x": 4
+    },
+    {
+      "iCave": 23,
+      "real": true,
+      "y": 9,
+      "x": 6
+    },
+    {
+      "iCave": 19,
+      "real": false,
+      "y": 9,
+      "x": 8
+    },
+    {
+      "iCave": 24,
+      "real": false,
+      "y": 10,
+      "x": 1
+    },
+    {
+      "iCave": 20,
+      "real": true,
+      "y": 10,
+      "x": 3
+    },
+    {
+      "iCave": 22,
+      "real": true,
+      "y": 10,
+      "x": 5
+    },
+    {
+      "iCave": 24,
+      "real": true,
+      "y": 10,
+      "x": 7
+    },
+    {
+      "iCave": 25,
+      "real": true,
+      "y": 11,
+      "x": 2
+    },
+    {
+      "iCave": 27, 
+      "real": true,
+      "y": 11,
+      "x": 4
+    },
+    {
+      "iCave": 29,
+      "real": true,
+      "y": 11,
+      "x": 6
+    },
+    {
+      "iCave": 25,
+      "real": false,
+      "y": 11,
+      "x": 8
+    },
+    {
+      "iCave": 30,
+      "real": false,
+      "y": 12,
+      "x": 1
+    },
+    {
+      "iCave": 26,
+      "real": true,
+      "y": 12,
+      "x": 3
+    },
+    {
+      "iCave": 28,
+      "real": true,
+      "y": 12,
+      "x": 5
+    },
+    {
+      "iCave": 30,
+      "real": true,
+      "y": 12,
+      "x": 7
+    },
+    {
+      "iCave": 1,
+      "real": false,
+      "y": 13,
+      "x": 2
+    },
+    {
+      "iCave": 3,
+      "real": false,
+      "y": 13,
+      "x": 4
+    },
+    {
+      "iCave": 5,
+      "real": false,
+      "y": 13,
+      "x": 6
+    },
+    {
+      "iCave": 1,
+      "real": false,
+      "y": 13,
+      "x": 8
+    },
+    {
+      "iCave": 2,
+      "real": false,
+      "y": 14, 
+      "x": 3
+    },
+    {
+      "iCave": 4,
+      "real": false,
+      "y": 14,
+      "x": 5
+    },
+    {
+      "iCave": 6,
+      "real": false,
+      "y": 14,
+      "x": 7
+    }
+  ]
+}

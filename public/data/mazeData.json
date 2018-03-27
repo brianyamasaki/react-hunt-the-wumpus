@@ -1,12 +1,8 @@
 {
   "mazes": [
     {
-      "title": "Example Maze 1",
-      "url": "/data/maze1.json"
-    },
-    {
-      "title": "Maze won't be found",
-      "url": "/data/maze000.json"
+      "title": "Board 1",
+      "url": "/data/board1.json"
     }
   ]
 }
