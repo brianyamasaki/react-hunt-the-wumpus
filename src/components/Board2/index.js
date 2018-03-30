@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { playerMove } from '../../modules/player';
+
 import backgroundTexture from './background.jpg';
 import boardData from './board.json';
 import './index.css';
 import './hex_white.png';
 import './hex_dark.png';
 import './hex_light.png';
+import './hex_player.png';
 class Board extends Component {
   state = {
     imgHeight: 0,
@@ -41,8 +44,13 @@ class Board extends Component {
     window.addEventListener('resize', this.onWindowResize);
   }
 
+  onClickRoom(e, iRoom) {
+    this.props.playerMove(iRoom);
+  }
+
   renderRoom(room, i, stuff) {
     const { imgWidth, imgHeight } = this.state;
+    const { playerRoom } = this.props;
     const x = room.x / stuff.widthDenominator * imgWidth;
     const y = room.y / stuff.heightDenominator * imgHeight;
     const size = Math.round(stuff.itemWidth);
@@ -52,12 +60,18 @@ class Board extends Component {
       width: size,
       height: size
     }
-    const classes = room.real ? "room" : "room virtual";
+    let classes;
+    if (room.real && room.iRoom === playerRoom) {
+      classes = "room player";
+    } else {
+      classes = room.real ? "room" : "room virtual";
+    }
     return (
       <div 
         className={classes} 
         key={i}
         style={style}
+        onClick={(e) => {this.onClickRoom(e, room.iRoom - 1) }}
       >
         <p style={{ marginTop: size / 4}}>{room.iRoom}</p>
       </div>
@@ -99,7 +113,6 @@ class Board extends Component {
     const boardNeighbors = stuff.boardRooms.filter(room => neighbors.indexOf(room.index) !== -1 );
     // find board rooms connected by this mazeRoom in an array
     const connectedNeighbors = boardNeighbors.filter(room => mazeRoom.connections.indexOf(room.iRoom - 1) !== -1 );
-    console.log(mazeRoom.room + 1, originBoardRoom.iRoom, boardNeighbors, connectedNeighbors.map(room => room.iRoom));
     return connectedNeighbors.map((connection, index) => this.renderPath(originBoardRoom, connection, i*100+index, stuff));
   }
 
@@ -144,10 +157,13 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData } = state;
+  const { mazeData, player } = state;
   return {
-    maze: mazeData.maze
+    maze: mazeData.maze,
+    playerRoom: player.currentCave
   };
 }
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps, {
+  playerMove
+})(Board);

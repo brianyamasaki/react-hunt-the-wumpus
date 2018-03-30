@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { fetchMazes } from '../../modules/mazesFetch';
 import { fetchMaze } from '../../modules/mazeFetch';
@@ -33,24 +32,6 @@ class Game extends Component {
     const { wumpusCave } = this.props;
     if (wumpusCave === iCave) {
       return <p className="text-center">Wumpus</p>;
-    }
-  }
-
-  renderMazeCave(cave, i) {
-    const connections = cave.connections.map(item => item + 1);
-    return (
-      <div className="cave" key={i}>
-        <Link to={`/cave/${i}`} onClick={(e) => this.onClickCave(e, i)} >
-          <p className="text-center">Room {i + 1}</p>
-          <p className="text-center">Leads to {connections.join(', ')}</p>
-        </Link>
-      </div>
-    )
-  }
-  renderMazeCaves() {
-    const { mazeData } = this.props;
-    if (mazeData && mazeData.maze) {
-      return mazeData.maze.map(this.renderMazeCave.bind(this))
     }
   }
 
@@ -93,13 +74,14 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-        <h1 className="text-center">Start Hunting</h1>
-        <div className="gameDiv">
-          {this.renderMazeCaves()}
-        </div>
+        <h1 className="text-center">Play</h1>
+        <ol>
+          <li>Choose a maze</li>
+          <li>Click on a white space to move there</li>
+        </ol>
         {this.renderMazes()}
-        {this.renderMazesState()}
         {this.renderBoard()}
+        {this.renderMazesState()}
       </div>
     );
   }

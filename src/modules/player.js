@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case PLAYER_MOVE:
       return {
-        currentCave: action.payload
+        currentCave: action.payload + 1
       };
     default:
       return state;
