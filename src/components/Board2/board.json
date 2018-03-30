@@ -2,326 +2,410 @@
   "heightDenominator": 15,
   "widthDenominator": 9,
   "rooms": [
-    {
-      "iCave": 25,
+    { 
+      "index": 0,
+      "iRoom": 25,
       "real": false,
       "x": 2,
       "y": 1
     },
     {
-      "iCave": 27,
+      "index": 1,
+      "iRoom": 27,
       "real": false,
       "x": 4,
       "y": 1
     },
     {
-      "iCave": 29,
+      "index": 2,
+      "iRoom": 29,
       "real": false,
       "x": 6,
       "y": 1
     },
     {
-      "iCave": 30,
+      "index": 3,
+      "iRoom": 30,
       "real": false,
       "y": 2,
       "x": 1
     },
     {
-      "iCave": 26,
+      "index": 4,
+      "iRoom": 26,
       "real": false,
       "x": 3,
       "y": 2
     },
     {
-      "iCave": 28,
+      "index": 5,
+      "iRoom": 28,
       "real": false,
       "x": 5,
       "y": 2
     },
     {
-      "iCave": 30,
+      "index": 6,
+      "iRoom": 30,
       "real": false,
       "x": 7,
       "y": 2
     },
     {
-      "iCave": 1,
+      "index": 7,
+      "iRoom": 1,
+      "real": true,
+      "y": 3,
+      "x": 2,
+      "neighbors": [0, 3, 4, 11, 12, 15]
+    },
+    {
+      "index": 8,
+      "iRoom": 3,
+      "real": true,
+      "y": 3,
+      "x": 4,
+      "neighbors": [1, 4, 5, 12, 13, 16]
+    },
+    {
+      "index": 9,
+      "iRoom": 5,
+      "real": true,
+      "y": 3,
+      "x": 6,
+      "neighbors": [2, 5, 6, 13, 14, 15]
+    },
+    {
+      "index": 10,
+      "iRoom": 1,
       "real": false,
       "x": 8,
       "y": 3
     },
     {
-      "iCave": 1,
-      "real": true,
-      "y": 3,
-      "x": 2
-    },
-    {
-      "iCave": 2,
-      "real": true,
-      "y": 4,
-      "x": 3
-    },
-    {
-      "iCave": 3,
-      "real": true,
-      "y": 3,
-      "x": 4
-    },
-    {
-      "iCave": 4,
-      "real": true,
-      "y": 4,
-      "x": 5
-    },
-    {
-      "iCave": 5,
-      "real": true,
-      "y": 3,
-      "x": 6
-    },
-    {
-      "iCave": 6,
-      "real": true,
-      "y": 4,
-      "x": 7
-    },
-    {
-      "iCave": 6,
+      "index": 11,
+      "iRoom": 6,
       "real": false,
       "y": 4,
       "x": 1
     },
     {
-      "iCave": 7,
+      "index": 12,
+      "iRoom": 2,
+      "real": true,
+      "y": 4,
+      "x": 3,
+      "neighbors": [4, 7, 8, 15, 16, 20]
+    },
+    {
+      "index": 13,
+      "iRoom": 4,
+      "real": true,
+      "y": 4,
+      "x": 5,
+      "neighbors": [5, 8, 9, 16, 17, 21]
+    },
+    {
+      "index": 14,
+      "iRoom": 6,
+      "real": true,
+      "y": 4,
+      "x": 7,
+      "neighbors": [6, 9, 10, 17, 18, 22]
+    },
+    {
+      "index": 15,
+      "iRoom": 7,
       "real": true,
       "y": 5,
-      "x": 2
+      "x": 2,
+      "neighbors": [7, 11, 12, 19, 20, 23]
     },
     {
-      "iCave": 8,
-      "real": true,
-      "y": 6,
-      "x": 3
-    },
-    {
-      "iCave": 9,
+      "index": 16,
+      "iRoom": 9,
       "real": true,
       "y": 5,
-      "x": 4
+      "x": 4,
+      "neighbors": [8, 12, 13, 20, 21, 24]
     },
     {
-      "iCave": 10,
-      "real": true,
-      "y": 6,
-      "x": 5
-    },
-    {
-      "iCave": 11,
+      "index": 17,
+      "iRoom": 11,
       "real": true,
       "y": 5,
-      "x": 6
+      "x": 6,
+      "neighbors": [9, 13, 14, 21, 22, 25]
     },
     {
-      "iCave": 12,
-      "real": true,
-      "y": 6,
-      "x": 7
-    },
-    {
-      "iCave": 7,
+      "index": 18,
+      "iRoom": 7,
       "real": false,
       "y": 5,
       "x": 8
     },
     {
-      "iCave": 12,
+      "index": 19,
+      "iRoom": 12,
       "real": false,
       "y": 6,
       "x": 1
     },
     {
-      "iCave": 13,
+      "index": 20,
+      "iRoom": 8,
       "real": true,
-      "y": 7,
-      "x": 2
+      "y": 6,
+      "x": 3,
+      "neighbors": [12, 15, 16, 23, 24, 28]
     },
     {
-      "iCave": 15,
+      "index": 21,
+      "iRoom": 10,
       "real": true,
-      "y": 7,
-      "x": 4
+      "y": 6,
+      "x": 5,
+      "neighbors": [13, 16, 17, 24, 25, 29]
     },
     {
-      "iCave": 17,
+      "index": 22,
+      "iRoom": 12,
       "real": true,
-      "y": 7,
-      "x": 6
+      "y": 6,
+      "x": 7,
+      "neighbors": [14, 17, 18, 25, 26, 30]
     },
     {
-      "iCave": 13,
+      "index": 23,
+      "iRoom": 13,
+      "real": true,
+      "y": 7,
+      "x": 2,
+      "neighbors": [15, 19, 20, 27, 28, 34]
+    },
+    {
+      "index": 24,
+      "iRoom": 15,
+      "real": true,
+      "y": 7,
+      "x": 4,
+      "neighbors": [16, 20, 21, 28, 29, 35]
+    },
+    {
+      "index": 25,
+      "iRoom": 17,
+      "real": true,
+      "y": 7,
+      "x": 6,
+      "neighbors": [17, 21, 22, 29, 30, 36]
+    },
+    {
+      "index": 26,
+      "iRoom": 13,
       "real": false,
       "y": 7,
       "x": 8
     },
     {
-      "iCave": 18,
+      "index": 27,
+      "iRoom": 18,
       "real": false,
       "y": 8,
       "x": 1
     },
     {
-      "iCave": 14,
+      "index": 28,
+      "iRoom": 14,
       "real": true,
       "y": 8,
-      "x": 3
+      "x": 3,
+      "neighbors": [20, 23, 24, 31, 32, 36]
     },
     {
-      "iCave": 16,
+      "index": 29,
+      "iRoom": 16,
       "real": true,
       "y": 8,
-      "x": 5
+      "x": 5, 
+      "neighbors": [21, 24, 25, 32, 33, 37]
     },
     {
-      "iCave": 18,
+      "index": 30,
+      "iRoom": 18,
       "real": true,
       "y": 8,
-      "x": 7
+      "x": 7,
+      "neighbors": [22, 25, 26, 33, 34, 38]
     },
     {
-      "iCave": 19,
+      "index": 31,
+      "iRoom": 19,
       "real": true,
       "y": 9,
-      "x": 2
+      "x": 2,
+      "neighbors": [23, 27, 28, 35, 36, 39]
     },
     {
-      "iCave": 21,
+      "index": 32,
+      "iRoom": 21,
       "real": true,
       "y": 9,
-      "x": 4
+      "x": 4,
+      "neighbors": [24, 28, 29, 36, 37, 40]
     },
     {
-      "iCave": 23,
+      "index": 33,
+      "iRoom": 23,
       "real": true,
       "y": 9,
-      "x": 6
+      "x": 6,
+      "neighbors": [25, 29, 30, 37, 38, 41]
     },
     {
-      "iCave": 19,
+      "index": 34,
+      "iRoom": 19,
       "real": false,
       "y": 9,
       "x": 8
     },
     {
-      "iCave": 24,
+      "index": 35,
+      "iRoom": 24,
       "real": false,
       "y": 10,
       "x": 1
     },
     {
-      "iCave": 20,
+      "index": 36,
+      "iRoom": 20,
       "real": true,
       "y": 10,
-      "x": 3
+      "x": 3,
+      "neighbors": [28, 31, 32, 39, 40, 44]
     },
     {
-      "iCave": 22,
+      "index": 37,
+      "iRoom": 22,
       "real": true,
       "y": 10,
-      "x": 5
+      "x": 5,
+      "neighbors": [29, 32, 33, 40, 41, 45]
     },
     {
-      "iCave": 24,
+      "index": 38,
+      "iRoom": 24,
       "real": true,
       "y": 10,
-      "x": 7
+      "x": 7,
+      "neighbors": [30, 33, 34, 41, 42, 45]
     },
     {
-      "iCave": 25,
+      "index": 39,
+      "iRoom": 25,
       "real": true,
       "y": 11,
-      "x": 2
+      "x": 2,
+      "neighbors": [31, 35, 36, 43, 44, 47]
     },
     {
-      "iCave": 27, 
+      "index": 40,
+      "iRoom": 27, 
       "real": true,
       "y": 11,
-      "x": 4
+      "x": 4,
+      "neighbors": [32, 26, 27, 44, 45, 48]
     },
     {
-      "iCave": 29,
+      "index": 41,
+      "iRoom": 29,
       "real": true,
       "y": 11,
-      "x": 6
+      "x": 6,
+      "neighbors": [33, 27, 28, 45, 46, 49]
     },
     {
-      "iCave": 25,
+      "index": 42,
+      "iRoom": 25,
       "real": false,
       "y": 11,
       "x": 8
     },
     {
-      "iCave": 30,
+      "index": 43,
+      "iRoom": 30,
       "real": false,
       "y": 12,
       "x": 1
     },
     {
-      "iCave": 26,
+      "index": 44,
+      "iRoom": 26,
       "real": true,
       "y": 12,
-      "x": 3
+      "x": 3,
+      "neighbors": [36, 39, 40, 47, 48, 51]
     },
     {
-      "iCave": 28,
+      "index": 45,
+      "iRoom": 28,
       "real": true,
       "y": 12,
-      "x": 5
+      "x": 5,
+      "neighbors": [37, 40, 41, 48, 49, 52]
     },
     {
-      "iCave": 30,
+      "index": 46,
+      "iRoom": 30,
       "real": true,
       "y": 12,
-      "x": 7
+      "x": 7,
+      "neighbors": [38, 41, 42, 49, 50, 53]
     },
     {
-      "iCave": 1,
+      "index": 47,
+      "iRoom": 1,
       "real": false,
       "y": 13,
       "x": 2
     },
     {
-      "iCave": 3,
+      "index": 48,
+      "iRoom": 3,
       "real": false,
       "y": 13,
       "x": 4
     },
     {
-      "iCave": 5,
+      "index": 49,
+      "iRoom": 5,
       "real": false,
       "y": 13,
       "x": 6
     },
     {
-      "iCave": 1,
+      "index": 50,
+      "iRoom": 1,
       "real": false,
       "y": 13,
       "x": 8
     },
     {
-      "iCave": 2,
+      "index": 51,
+      "iRoom": 2,
       "real": false,
       "y": 14, 
       "x": 3
     },
     {
-      "iCave": 4,
+      "index": 52,
+      "iRoom": 4,
       "real": false,
       "y": 14,
       "x": 5
     },
     {
-      "iCave": 6,
+      "index": 53,
+      "iRoom": 6,
       "real": false,
       "y": 14,
       "x": 7

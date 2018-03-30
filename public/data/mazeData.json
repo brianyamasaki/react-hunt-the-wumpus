@@ -1,8 +1,8 @@
 {
   "mazes": [
     {
-      "title": "Board 1",
-      "url": "/data/board1.json"
+      "title": "Maze 1",
+      "url": "/data/maze1.json"
     }
   ]
 }
