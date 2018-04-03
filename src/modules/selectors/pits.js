@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getPits = (state) => {
-  return state.pits.pitCaves;
+  return state.pits.pitRooms;
 }
 
 const getPlayer = (state) => {
@@ -11,7 +11,7 @@ const getPlayer = (state) => {
 export const isPlayerInPit = createSelector(
   [ getPlayer, getPits ],
   (player, pits) => {
-    if (pits.indexOf(player.currentCave) === -1) {
+    if (pits.indexOf(player.currentRoom) === -1) {
       return false;
     } 
     return true;

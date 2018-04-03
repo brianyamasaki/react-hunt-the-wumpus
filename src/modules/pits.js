@@ -1,17 +1,17 @@
+import { NUMBER_OF_PITS } from '../shared';
 export const PIT_INIT = 'PIT_INIT';
 
 const initialState = {
-  pitCount: 1,
-  pitCaves: []
+  pitCount: NUMBER_OF_PITS,
+  pitRooms: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case PIT_INIT:
       return {
-        // currently only one pit
         ...state,
-        pitCaves: [Math.trunc(Math.random() * action.payload)]
+        pitRooms: action.payload
       };
     default:
       return state;
@@ -19,8 +19,12 @@ export default (state = initialState, action) => {
 }
 
 export const pitsInit = (caves) => {
+  const batCaves = [];
+  for(let i = 0; i < NUMBER_OF_PITS; i++) {
+    batCaves.push(Math.trunc(Math.random() * caves.length) + 1);
+  }
   return {
     type: PIT_INIT,
-    payload: caves.length
+    payload: batCaves
   };
 }

@@ -2,123 +2,153 @@
   "imgUrl": "/data/board1.png",
   "maze": [
     {
-      "room": 0,
+      "index": 0,
+      "room": 1,
       "connections": [1,5,6]
     },
     {
-      "room": 1,
+      "index": 1, 
+      "room": 2,
       "connections": [0, 2, 25]
     },
     {
-      "room": 2,
+      "index": 2,
+      "room": 3,
       "connections": [1, 8, 27]
     },
     {
-      "room": 3,
+      "index": 3,
+      "room": 4,
       "connections": [4, 9]
     },
     {
-      "room": 4,
+      "index": 4,
+      "room": 5,
       "connections": [3, 5]
     },
     {
-      "room": 5,
+      "index": 5,
+      "room": 6,
       "connections": [0, 4, 11]
     },
     {
-      "room": 6,
+      "index": 6,
+      "room": 7,
       "connections": [1, 7, 12]
     },
     {
-      "room": 7,
+      "index": 7,
+      "room": 8,
       "connections": [6, 8]
     },
     {
-      "room": 8,
+      "index": 8,
+      "room": 9,
       "connections": [2,7,9]
     },
     {
-      "room": 9,
+      "index": 9,
+      "room": 10,
       "connections": [3, 8, 16]
     },
     {
-      "room": 10,
+      "index": 10,
+      "room": 11,
       "connections": [11, 16]
     },
     {
-      "room": 11,
+      "index": 11,
+      "room": 12,
       "connections": [5, 10, 18]
     },
     {
-      "room": 12,
+      "index": 12,
+      "room": 13,
       "connections": [6, 13]
     },
     {
-      "room": 13,
+      "index": 13,
+      "room": 14,
       "connections": [12, 14, 19]
     },
     {
-      "room": 14,
+      "index": 14,
+      "room": 15,
       "connections": [14, 15, 21]
     },
     {
-      "room": 15,
+      "index": 15,
+      "room": 16,
       "connections": [14, 16, 22]
     },
     {
-      "room": 16,
+      "index": 16,
+      "room": 17,
       "connections": [9, 10, 15]
     },
     {
-      "room": 17,
+      "index": 17,
+      "room": 18,
       "connections": [11, 18]
     },
     {
-      "room": 18,
+      "index": 18,
+      "room": 19,
       "connections": [17, 19, 24]
     },
     {
-      "room": 19,
+      "index": 19,
+      "room": 20,
       "connections": [13, 18, 25]
     },
     {
-      "room": 20,
+      "index": 20,
+      "room": 21,
       "connections": [14, 21, 26]
     },
     {
-      "room": 21,
+      "index": 21,
+      "room": 22,
       "connections": [20, 27, 28]
     },
     {
-      "room": 22,
+      "index": 22,
+      "room": 23,
       "connections": [15, 23]
     },
     {
-      "room": 23,
+      "index": 23,
+      "room": 24,
       "connections": [22, 28]
     },
     {
-      "room": 24,
+      "index": 24,
+      "room": 25,
       "connections": [18, 29]
     },
     {
-      "room": 25,
+      "index": 25,
+      "room": 26,
       "connections": [1, 19, 26]
     },
     {
-      "room": 26,
+      "index": 26,
+      "room": 27,
       "connections": [20, 25]
     },
     {
-      "room": 27,
+      "index": 27,
+      "room": 28,
       "connections": [2, 21]
     },
     {
-      "room": 28,
+      "index": 28,
+      "room": 29,
       "connections": [21, 23]
     },
     {
-      "room": 29,
+      "index": 29,
+      "room": 30,
       "connections": [23, 24]
     }
   ]

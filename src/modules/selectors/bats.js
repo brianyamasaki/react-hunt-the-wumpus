@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getBats = (state) => {
-  return state.bats.batCaves;
+  return state.bats.batRooms;
 }
 
 const getPlayer = (state) => {
@@ -11,7 +11,7 @@ const getPlayer = (state) => {
 export const isPlayerWithBat = createSelector(
   [ getPlayer, getBats ],
   (player, bats) => {
-    if (bats.indexOf(player.currentCave) === -1) {
+    if (bats.indexOf(player.currentRoom) === -1) {
       return false;
     } 
     return true;

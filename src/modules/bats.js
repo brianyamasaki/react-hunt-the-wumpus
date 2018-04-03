@@ -1,11 +1,12 @@
 import { playerMove } from '../modules/player';
+import { NUMBER_OF_BATS } from '../shared';
 export const BAT_INIT = 'BAT_INIT';
 export const BAT_MOVES_PLAYER = 'BAT_MOVES_PLAYER';
 export const BAT_MOVES = 'BAT_MOVES';
 
 const initialState = {
-  batCount: 1,
-  batCaves: []
+  batCount: NUMBER_OF_BATS,
+  batRooms: []
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +14,7 @@ export default (state = initialState, action) => {
     case BAT_INIT:
       return {
         ...state,
-        batCaves: action.payload
+        batRooms: action.payload
       };
     default:
       return state;
@@ -22,9 +23,13 @@ export default (state = initialState, action) => {
 
 export const batsInit = (caves) => {
   // currently only one bat in the game
+  const batRooms = [];
+  for (let i = 0; i < NUMBER_OF_BATS; i++) {
+    batRooms.push(Math.trunc(Math.random() * caves.length) + 1);
+  }
   return {
     type: BAT_INIT,
-    payload: [Math.trunc(Math.random() * caves.length)]
+    payload: batRooms
   };
 }
 

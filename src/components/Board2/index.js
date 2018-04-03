@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { playerMove } from '../../modules/player';
+import { playerLegalMoves } from '../../modules/selectors/playerLegalMove';
 
 import backgroundTexture from './background.jpg';
 import boardData from './board.json';
@@ -50,7 +51,7 @@ class Board extends Component {
 
   renderRoom(room, i, stuff) {
     const { imgWidth, imgHeight } = this.state;
-    const { playerRoom } = this.props;
+    const { playerRoom, playerLegalMoves } = this.props;
     const x = room.x / stuff.widthDenominator * imgWidth;
     const y = room.y / stuff.heightDenominator * imgHeight;
     const size = Math.round(stuff.itemWidth);
@@ -60,18 +61,23 @@ class Board extends Component {
       width: size,
       height: size
     }
-    let classes;
-    if (room.real && room.iRoom === playerRoom) {
-      classes = "room player";
-    } else {
-      classes = room.real ? "room" : "room virtual";
+    const classes = ['room'];
+    const isLegalMove = playerLegalMoves.indexOf(room.iRoom) !== -1;
+    if (!room.real) {
+      classes.push('virtual');
+    }
+    if (room.iRoom === playerRoom) {
+      classes.push('player');
+    }
+    if (isLegalMove) {
+      classes.push('legalMove');
     }
     return (
       <div 
-        className={classes} 
+        className={classes.join(' ')} 
         key={i}
         style={style}
-        onClick={(e) => {this.onClickRoom(e, room.iRoom - 1) }}
+        onClick={(e) => {if (isLegalMove) this.onClickRoom(e, room.iRoom - 1) }}
       >
         <p style={{ marginTop: size / 4}}>{room.iRoom}</p>
       </div>
@@ -106,8 +112,9 @@ class Board extends Component {
   }
 
   renderRoomPaths(mazeRoom, i, stuff) {
+    // this logic should be a selector!!
     // find the room in the board data
-    const originBoardRoom = stuff.boardRooms.find(room => room.real && room.iRoom === mazeRoom.room + 1);
+    const originBoardRoom = stuff.boardRooms.find(room => room.real && room.iRoom === mazeRoom.room);
     const neighbors = originBoardRoom.neighbors;
     // collect all board neighbors in array
     const boardNeighbors = stuff.boardRooms.filter(room => neighbors.indexOf(room.index) !== -1 );
@@ -160,7 +167,8 @@ const mapStateToProps = state => {
   const { mazeData, player } = state;
   return {
     maze: mazeData.maze,
-    playerRoom: player.currentCave
+    playerRoom: player.currentRoom,
+    playerLegalMoves: playerLegalMoves(state)
   };
 }
 

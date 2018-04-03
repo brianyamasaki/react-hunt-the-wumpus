@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getBats = (state) => {
-  return state.bats.batCaves;
+  return state.bats.batRooms;
 }
 
 const getPlayer = (state) => {
@@ -9,7 +9,7 @@ const getPlayer = (state) => {
 }
 
 const getPits = (state) => {
-  return state.pits.pitCaves;
+  return state.pits.pitRooms;
 }
 
 const getWumpus = (state) => {
@@ -21,12 +21,12 @@ const getMaze = (state) => {
 }
 
 const getBatRoom = (bats, player, pits, wumpus, maze) => {
-  const room = bats.batCaves[Math.trunc(Math.random() * bats.batCount)];
+  const room = bats.batRooms[Math.trunc(Math.random() * bats.batCount)];
   return `A Bat is in room ${room}`
 };
 
 const getPitRoom = (bats, player, pits, wumpus, maze) => {
-  const room = pits.pitCaves[Math.trunc(Math.random() * pits.pitCount)];
+  const room = pits.pitRooms[Math.trunc(Math.random() * pits.pitCount)];
   return `A Pit is in room ${room}`
 };
 
@@ -34,8 +34,8 @@ const isWumpusClose = (bats, player, pits, wumpus, maze) => {
   const msgClose = 'The Wumpus is close';
   const msgFar = 'The Wumpus is not close';
   //create list of caves with distance one
-  const caveLevelOne = maze[player.currentCave].connections;
-  if (caveLevelOne.indexOf(wumpus.currentCave) !== -1)  {
+  const caveLevelOne = maze[player.currentRoom].connections;
+  if (caveLevelOne.indexOf(wumpus.currentRoom) !== -1)  {
     return msgClose;
   } else {
     let caveLevelTwo = [];
@@ -43,7 +43,7 @@ const isWumpusClose = (bats, player, pits, wumpus, maze) => {
     caveLevelOne.forEach((cave) => {
       caveLevelTwo = caveLevelTwo.concat(maze[cave].connections);
     });
-    if (caveLevelTwo.indexOf(wumpus.currentCave) !== -1) {
+    if (caveLevelTwo.indexOf(wumpus.currentRoom) !== -1) {
       return msgClose;
     }
   }
@@ -51,11 +51,11 @@ const isWumpusClose = (bats, player, pits, wumpus, maze) => {
 };
 
 const getWumpusRoom = (bats, player, pits, wumpus, maze) => {
-  return `The Wumpus is in room ${wumpus.currentCave}`;
+  return `The Wumpus is in room ${wumpus.currentRoom}`;
 };
 
 const getPlayerRoom = (bats, player, pits, wumpus, maze) => {
-  return `You are in room ${player.currentCave}`
+  return `You are in room ${player.currentRoom}`
 };
 
 const secrets = [

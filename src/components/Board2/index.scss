@@ -19,7 +19,7 @@
       background-image: url('hex_dark.png');
       color: white;
     }
-    &:hover {
+    &.legalMove:hover {
       background-image: url('hex_light.png');
       cursor: pointer;
     }

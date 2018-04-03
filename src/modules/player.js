@@ -1,14 +1,14 @@
 export const PLAYER_MOVE = 'PLAYER_MOVE';
 
 const initialState = {
-  currentCave: ''
+  currentRoom: ''
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case PLAYER_MOVE:
       return {
-        currentCave: action.payload + 1
+        currentRoom: action.payload + 1
       };
     default:
       return state;

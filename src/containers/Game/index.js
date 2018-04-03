@@ -93,7 +93,7 @@ const mapStateToProps = state => {
     mazes: mazes.obj,
     isLoading: mazes.isLoading,
     mazeData,
-    wumpusCave: wumpus.currentCave
+    wumpusCave: wumpus.currentRoom
   };
 }
 

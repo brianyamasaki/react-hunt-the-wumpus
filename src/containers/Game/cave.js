@@ -35,7 +35,7 @@ class Cave extends Component {
     }
     if (nextProps.isPlayerWithBat) {
       setTimeout(() => {
-        batMovesPlayer(maze, player.currentCave);
+        batMovesPlayer(maze, player.currentRoom);
         console.log('player gets taken to a new room');
       }, 5000);
     }
@@ -136,7 +136,7 @@ const mapStateToProps = state => {
   const { mazeData, wumpus, player, arrows, purse } = state;
   return {
     maze: mazeData.maze,
-    wumpusCave: wumpus.currentCave,
+    wumpusCave: wumpus.currentRoom,
     wumpusState: getPlayerWumpusState(state),
     isPlayerInPit: isPlayerInPit(state),
     isPlayerWithBat: isPlayerWithBat(state),
