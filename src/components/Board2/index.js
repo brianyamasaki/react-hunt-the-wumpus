@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import GameStatusPopover from './gameStatusPopover';
 import { playerMove } from '../../modules/player';
+import { purseAdd } from '../../modules/purse';
 import { playerLegalMoves } from '../../modules/selectors/playerLegalMove';
 
 import backgroundTexture from './background.jpg';
@@ -11,10 +13,13 @@ import './hex_white.png';
 import './hex_dark.png';
 import './hex_light.png';
 import './hex_player.png';
+import './hex_bat.png';
+import './hex_pit.png';
 class Board extends Component {
   state = {
     imgHeight: 0,
-    imgWidth: 0
+    imgWidth: 0,
+    debugDisplay: true
   };
 
   componentWillUnmount() {
@@ -46,12 +51,14 @@ class Board extends Component {
   }
 
   onClickRoom(e, iRoom) {
-    this.props.playerMove(iRoom);
+    const { playerMove, purseAdd } = this.props;
+    playerMove(iRoom);
+    purseAdd(1);
   }
 
   renderRoom(room, i, stuff) {
     const { imgWidth, imgHeight } = this.state;
-    const { playerRoom, playerLegalMoves } = this.props;
+    const { playerRoom, playerLegalMoves, pitRooms, batRooms } = this.props;
     const x = room.x / stuff.widthDenominator * imgWidth;
     const y = room.y / stuff.heightDenominator * imgHeight;
     const size = Math.round(stuff.itemWidth);
@@ -72,7 +79,15 @@ class Board extends Component {
     if (isLegalMove) {
       classes.push('legalMove');
     }
-    return (
+    if (this.state.debugDisplay && room.real) {
+      if (pitRooms.indexOf(room.iRoom) !== -1) {
+        classes.push('pit');
+      }
+      if (batRooms.indexOf(room.iRoom) !== -1) {
+        classes.push('bat');
+      }
+    }
+    const caveRoom = (
       <div 
         className={classes.join(' ')} 
         key={i}
@@ -82,6 +97,15 @@ class Board extends Component {
         <p style={{ marginTop: size / 4}}>{room.iRoom}</p>
       </div>
     );
+    if (room.iRoom === playerRoom) {
+      return (
+        <GameStatusPopover key={i}>
+          {caveRoom}
+        </GameStatusPopover>
+      );  
+    } else {
+      return caveRoom;
+    }
   }
 
   renderRooms() {
@@ -164,14 +188,17 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData, player } = state;
+  const { mazeData, player, pits, bats } = state;
   return {
     maze: mazeData.maze,
     playerRoom: player.currentRoom,
-    playerLegalMoves: playerLegalMoves(state)
+    playerLegalMoves: playerLegalMoves(state),
+    pitRooms: pits.pitRooms,
+    batRooms: bats.batRooms
   };
 }
 
 export default connect(mapStateToProps, {
-  playerMove
+  playerMove,
+  purseAdd
 })(Board);

@@ -26,6 +26,12 @@
     &.player {
       background-image: url('hex_player.png');
     }
+    &.bat {
+      background-image: url('hex_bat.png');
+    }
+    &.pit {
+      background-image: url('hex_pit.png');
+    }
     img {
       position: absolute;
       left: 0;

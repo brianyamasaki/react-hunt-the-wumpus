@@ -19,9 +19,11 @@ const getPlayer = (state) => {
 export const getPlayerWumpusState = createSelector(
   [ getWumpus, getPlayer, getMaze ],
   (wumpus, player, maze) => {
+    if (player.currentRoom === '')
+      return NOT_NEAR_WUMPUS;
     if (wumpus.currentRoom === player.currentRoom) {
       return PLAYER_WITH_WUMPUS;
-    } else if (maze[player.currentRoom].connections.indexOf(wumpus.currentRoom) !== -1){
+    } else if (maze[player.roomIndex].connections.indexOf(wumpus.roomIndex) !== -1){
       return PLAYER_NEAR_WUMPUS;
     }
     return NOT_NEAR_WUMPUS;

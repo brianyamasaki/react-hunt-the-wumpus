@@ -7,6 +7,7 @@ import { fetchMaze } from '../../modules/mazeFetch';
 import { playerMove } from '../../modules/player';
 import { fetchTrivia } from '../../modules/trivia';
 import Board2 from '../../components/Board2';
+import Dashboard from '../../components/dashboard';
 
 import './index.css';
 
@@ -77,11 +78,12 @@ class Game extends Component {
         <h1 className="text-center">Play</h1>
         <ol>
           <li>Choose a maze</li>
-          <li>Click on a white space to move there</li>
+          <li>Click on a space to move there</li>
         </ol>
         {this.renderMazes()}
-        {this.renderBoard()}
         {this.renderMazesState()}
+        <Dashboard />
+        {this.renderBoard()}
       </div>
     );
   }

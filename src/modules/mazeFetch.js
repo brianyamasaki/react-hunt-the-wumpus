@@ -2,6 +2,7 @@ import { fetchJson } from '../shared';
 import { wumpusInit } from '../modules/wumpus';
 import { pitsInit } from '../modules/pits';
 import { batsInit } from '../modules/bats';
+import { playerInit } from '../modules/player';
 
 export const FETCH_MAZE = "FETCH_MAZE";
 export const FETCH_MAZE_SUCCESS = "FETCH_MAZE_SUCCESS";
@@ -57,6 +58,7 @@ export const fetchMaze = url => dispatch => {
       dispatch(wumpusInit(maze));
       dispatch(pitsInit(maze));
       dispatch(batsInit(maze));
+      dispatch(playerInit());
     })
     .catch(error => {
       dispatch({
