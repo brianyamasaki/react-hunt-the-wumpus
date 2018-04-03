@@ -18,8 +18,7 @@ import './hex_pit.png';
 class Board extends Component {
   state = {
     imgHeight: 0,
-    imgWidth: 0,
-    debugDisplay: true
+    imgWidth: 0
   };
 
   componentWillUnmount() {
@@ -58,7 +57,7 @@ class Board extends Component {
 
   renderRoom(room, i, stuff) {
     const { imgWidth, imgHeight } = this.state;
-    const { playerRoom, playerLegalMoves, pitRooms, batRooms } = this.props;
+    const { playerRoom, playerLegalMoves, pitRooms, batRooms, debugMode } = this.props;
     const x = room.x / stuff.widthDenominator * imgWidth;
     const y = room.y / stuff.heightDenominator * imgHeight;
     const size = Math.round(stuff.itemWidth);
@@ -79,7 +78,7 @@ class Board extends Component {
     if (isLegalMove) {
       classes.push('legalMove');
     }
-    if (this.state.debugDisplay && room.real) {
+    if (debugMode && room.real) {
       if (pitRooms.indexOf(room.iRoom) !== -1) {
         classes.push('pit');
       }
@@ -188,13 +187,14 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData, player, pits, bats } = state;
+  const { mazeData, player, pits, bats, globalState } = state;
   return {
     maze: mazeData.maze,
     playerRoom: player.currentRoom,
     playerLegalMoves: playerLegalMoves(state),
     pitRooms: pits.pitRooms,
-    batRooms: bats.batRooms
+    batRooms: bats.batRooms,
+    debugMode: globalState.debugMode
   };
 }
 

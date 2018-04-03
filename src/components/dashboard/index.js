@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import TriviaModal from '../../components/trivia/triviaModal';
 import { arrowsAdd } from '../../modules/arrows'
+import { toggleDebugMode } from '../../modules/globalState';
 
 class Dashboard extends Component {
   state = {
@@ -10,7 +11,8 @@ class Dashboard extends Component {
     buyArrow: false,
     buySecret: false,
     minCorrect: 2,
-    maxTries: 3
+    maxTries: 3,
+    debugMode: false
   }
 
   onBuyArrow() {
@@ -60,6 +62,13 @@ class Dashboard extends Component {
     }
   }
 
+  onChangeDebugCheckbox() {
+    this.setState({
+      debugMode: !this.state.debugMode
+    });
+    this.props.toggleDebugMode();
+  }
+  
   render() {
     return (
       <div>
@@ -67,6 +76,7 @@ class Dashboard extends Component {
           <Button onClick={this.onBuyArrow.bind(this)}>Buy Arrow</Button>
           <Button onClick={this.onBuySecret.bind(this)}>Buy Secret</Button>
         </ButtonToolbar>
+        <label>Debug Mode <input type="checkbox" onChange={this.onChangeDebugCheckbox.bind(this)} value={this.state.debugMode} /></label>
         {this.renderModal()}
       </div>
     )
@@ -78,5 +88,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-  arrowsAdd
+  arrowsAdd,
+  toggleDebugMode
 })(Dashboard);
