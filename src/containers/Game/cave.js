@@ -4,8 +4,8 @@ import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getPlayerWumpusState, PLAYER_NEAR_WUMPUS, PLAYER_WITH_WUMPUS } from '../../modules/selectors/wumpus';
-import { isPlayerInPit } from '../../modules/selectors/pits';
-import { isPlayerWithBat } from '../../modules/selectors/bats';
+import { getPlayerPitState, PLAYER_IN_PIT } from '../../modules/selectors/pits';
+import { getPlayerBatState, PLAYER_WITH_BAT } from '../../modules/selectors/bats';
 import { playerMove } from '../../modules/player';
 import { batMovesPlayer } from '../../modules/bats';
 import { purseAdd } from '../../modules/purse'
@@ -28,12 +28,12 @@ class Cave extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { changePage, batMovesPlayer, maze, player } = this.props;
-    if (nextProps.isPlayerInPit) {
+    if (nextProps.playerPitState === PLAYER_IN_PIT) {
       setTimeout(() => {
         changePage('/wumpus');
       }, 5000);
     }
-    if (nextProps.isPlayerWithBat) {
+    if (nextProps.playerBatState === PLAYER_WITH_BAT) {
       setTimeout(() => {
         batMovesPlayer(maze, player.currentRoom);
         console.log('player gets taken to a new room');
@@ -138,8 +138,8 @@ const mapStateToProps = state => {
     maze: mazeData.maze,
     wumpusCave: wumpus.currentRoom,
     wumpusState: getPlayerWumpusState(state),
-    isPlayerInPit: isPlayerInPit(state),
-    isPlayerWithBat: isPlayerWithBat(state),
+    playerPitState: getPlayerPitState(state),
+    playerBatState: getPlayerBatState(state),
     player,
     arrowCount: arrows.count,
     coins: purse.amount

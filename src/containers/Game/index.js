@@ -43,15 +43,19 @@ class Game extends Component {
   }
 
   renderMazes() {
-    const { mazes } = this.props;
+    const { mazes, mazeData } = this.props;
+    const instruction = !mazeData.maze ? 'Choose a Maze' : 'Mazes';
     if (mazes) {
       return (
-        <ul>
-          {mazes.mazes.map(this.renderMazeTitle.bind(this))}
-        </ul>
+        <div>
+          <h3 className="text-center">{instruction}</h3>
+          <ul>
+            {mazes.mazes.map(this.renderMazeTitle.bind(this))}
+          </ul>
+        </div>
       );
     }
-    return <p />;
+    return
   }
 
   renderMazesState() {
@@ -76,10 +80,6 @@ class Game extends Component {
     return (
       <div className="game">
         <h1 className="text-center">Play</h1>
-        <ol>
-          <li>Choose a maze</li>
-          <li>Click on a space to move there</li>
-        </ol>
         {this.renderMazes()}
         {this.renderMazesState()}
         <Dashboard />

@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import GameStatusPopover from './gameStatusPopover';
 import { playerMove } from '../../modules/player';
 import { purseAdd } from '../../modules/purse';
+import { batMovesPlayer } from '../../modules/bats';
 import { playerLegalMoves } from '../../modules/selectors/playerLegalMove';
+import { getPlayerBatState, PLAYER_WITH_BAT } from '../../modules/selectors/bats';
 
 import backgroundTexture from './background.jpg';
 import boardData from './board.json';
@@ -21,6 +23,14 @@ class Board extends Component {
     imgHeight: 0,
     imgWidth: 0
   };
+
+  componentWillReceiveProps(nextProps) {
+    const { maze, batMovesPlayer } = this.props;
+    if (nextProps.playerBatState === PLAYER_WITH_BAT) {
+      window.alert('Bat is moving you to a random room');
+      batMovesPlayer(maze, nextProps.playerRoom);
+    }
+  }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.onWindowResize);
@@ -199,11 +209,13 @@ const mapStateToProps = state => {
     pitRooms: pits.pitRooms,
     batRooms: bats.batRooms,
     wumpusRoom: wumpus.currentRoom,
+    playerBatState: getPlayerBatState(state),
     debugMode: globalState.debugMode
   };
 }
 
 export default connect(mapStateToProps, {
   playerMove,
-  purseAdd
+  purseAdd,
+  batMovesPlayer
 })(Board);
