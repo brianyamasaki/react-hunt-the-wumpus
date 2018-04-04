@@ -22,7 +22,8 @@ class AskTrivia extends Component <Props> {
     questionIndex: 0,
     correctAnswers: 0,
     attempts: 0,
-    show: true
+    show: true,
+    showResult: ''
   };
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class AskTrivia extends Component <Props> {
     fetchTrivia(maxTries);
   }
 
-  succeeded(success) {
+  hideResult(success) {
     const { attempts, correctAnswers, questionIndex } = this.state;
     let show = true;
     if (success) {
@@ -42,12 +43,14 @@ class AskTrivia extends Component <Props> {
         correctAnswers: correctAnswers + 1,
         questionIndex: questionIndex + 1,
         attempts: attempts + 1,
-        show
+        show,
+        showResult: ''
       });
     } else {
       this.setState({
         questionIndex: questionIndex + 1,
-        attempts: attempts + 1
+        attempts: attempts + 1,
+        showResult: ''
       });
     }
     if (attempts + 1 >= this.props.maxTries) {
@@ -55,10 +58,37 @@ class AskTrivia extends Component <Props> {
     } 
   }
 
+  succeeded(success) {
+    this.setState({
+      showResult: success ? 'correct' : 'incorrect'
+    });
+    setTimeout(() => this.hideResult(success), 3000);
+  }
+
   renderQuestion() {
     const { trivia } = this.props;
     if (trivia.unusedQuestions.length) {
-      return <DisplayQuestion question={trivia.unusedQuestions[this.state.questionIndex]} isCorrect={this.succeeded.bind(this)} />
+      return (
+        <DisplayQuestion 
+          question={trivia.unusedQuestions[this.state.questionIndex]} 
+          isCorrect={this.succeeded.bind(this)} 
+        />
+      );
+    }
+  }
+
+  renderFooter() {
+
+    if (!this.state.showResult) {
+      return (
+        <span className="pull-left">Click on the correct answer</span>
+      );
+    } else {
+      return (
+        <span className="pull-left">
+          <strong>Answer is {this.state.showResult}</strong>
+        </span>
+      )
     }
   }
 
@@ -66,12 +96,12 @@ class AskTrivia extends Component <Props> {
     return (
       <div>
         <Modal show={this.state.show}>
-          <Modal.Header>
-            Question {this.state.questionIndex + 1} of {this.props.maxTries}
+          <Modal.Header closeButton>
+            Question {this.state.questionIndex + 1} of {this.props.maxTries}<span className="pull-right">{this.state.correctAnswers} answered correctly</span>
           </Modal.Header>
           {this.renderQuestion()}
           <Modal.Footer>
-            Click on the correct answer
+            {this.renderFooter()}
           </Modal.Footer>
         </Modal>
       </div>

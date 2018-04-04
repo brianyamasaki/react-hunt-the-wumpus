@@ -27,6 +27,7 @@ export const batsInit = (caves) => {
   for (let i = 0; i < NUMBER_OF_BATS; i++) {
     batRooms.push(Math.trunc(Math.random() * caves.length) + 1);
   }
+  console.log(`Bats are in rooms ${batRooms.join(', ')}`)
   return {
     type: BAT_INIT,
     payload: batRooms

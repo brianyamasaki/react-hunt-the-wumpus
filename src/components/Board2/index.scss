@@ -32,6 +32,9 @@
     &.pit {
       background-image: url('hex_pit.png');
     }
+    &.wumpus {
+      background-image: url('hex_wumpus.png');
+    }
     img {
       position: absolute;
       left: 0;

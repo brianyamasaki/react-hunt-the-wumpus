@@ -73,13 +73,12 @@ class DisplayQuestion extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { isGameOver } = this.props;
   return {
     isGameOver: isGameOver(state)
   }
 }
 
-export default connect(mapStateToProps, null, {
+export default connect(mapStateToProps, {
   purseSubtract,
   gameOver,
   isGameOver

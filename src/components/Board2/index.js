@@ -15,6 +15,7 @@ import './hex_light.png';
 import './hex_player.png';
 import './hex_bat.png';
 import './hex_pit.png';
+import './hex_wumpus.png';
 class Board extends Component {
   state = {
     imgHeight: 0,
@@ -57,7 +58,7 @@ class Board extends Component {
 
   renderRoom(room, i, stuff) {
     const { imgWidth, imgHeight } = this.state;
-    const { playerRoom, playerLegalMoves, pitRooms, batRooms, debugMode } = this.props;
+    const { playerRoom, playerLegalMoves, pitRooms, batRooms, wumpusRoom, debugMode } = this.props;
     const x = room.x / stuff.widthDenominator * imgWidth;
     const y = room.y / stuff.heightDenominator * imgHeight;
     const size = Math.round(stuff.itemWidth);
@@ -84,6 +85,9 @@ class Board extends Component {
       }
       if (batRooms.indexOf(room.iRoom) !== -1) {
         classes.push('bat');
+      }
+      if (wumpusRoom === room.iRoom) {
+        classes.push('wumpus');
       }
     }
     const caveRoom = (
@@ -187,13 +191,14 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => {
-  const { mazeData, player, pits, bats, globalState } = state;
+  const { mazeData, player, pits, bats, globalState, wumpus } = state;
   return {
     maze: mazeData.maze,
     playerRoom: player.currentRoom,
     playerLegalMoves: playerLegalMoves(state),
     pitRooms: pits.pitRooms,
     batRooms: bats.batRooms,
+    wumpusRoom: wumpus.currentRoom,
     debugMode: globalState.debugMode
   };
 }
