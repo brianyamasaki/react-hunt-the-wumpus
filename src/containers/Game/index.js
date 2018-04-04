@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
+import { Button } from 'react-bootstrap';
+
 import { fetchMazes } from '../../modules/mazesFetch';
 import { fetchMaze } from '../../modules/mazeFetch';
 import { playerMove } from '../../modules/player';
@@ -38,7 +40,11 @@ class Game extends Component {
 
   renderMazeTitle(maze, i) {
     return (
-      <li key={i} onClick={(e) => this.onClickMaze(e, i)}>{maze.title}</li>
+      <li key={i}>
+        <Button bsStyle="primary" onClick={(e) => this.onClickMaze(e, i)}>
+          {maze.title}
+        </Button>
+      </li>
     );
   }
 
@@ -69,6 +75,13 @@ class Game extends Component {
     }
   }
 
+  renderDashboard() {
+    const { mazeData } = this.props;
+    if (mazeData.imgUrl) {
+      return <Dashboard />;
+    }
+  }
+
   renderBoard() {
     const { mazeData } = this.props;
     if (mazeData.imgUrl) {
@@ -79,10 +92,10 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-        <h1 className="text-center">Play</h1>
+        <h1 className="text-center">Play Hunt the Wumpus</h1>
         {this.renderMazes()}
         {this.renderMazesState()}
-        <Dashboard />
+        {this.renderDashboard()}
         {this.renderBoard()}
       </div>
     );
