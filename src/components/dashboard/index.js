@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Grid, Row, Button, ButtonToolbar } from 'react-bootstrap';
+import ItemCounts from './itemCounts';
 import TriviaModal from '../../components/trivia/triviaModal';
+import WumpusState from './wumpusState';
+import PitState from './pitState';
+import BatState from './batState';
 import { arrowsAdd } from '../../modules/arrows'
 import { toggleDebugMode } from '../../modules/globalState';
 
+const coinDescriptions = {
+  singular: 'Coin',
+  plural: 'Coins'
+};
+
+const arrowDescriptions = {
+  singular: 'Arrow',
+  plural: 'Arrows'
+};
 class Dashboard extends Component {
   state = {
     showModal: false,
@@ -68,23 +81,44 @@ class Dashboard extends Component {
     });
     this.props.toggleDebugMode();
   }
-  
+
   render() {
     return (
-      <div>
-        <ButtonToolbar>
-          <Button onClick={this.onBuyArrow.bind(this)}>Buy Arrow</Button>
-          <Button onClick={this.onBuySecret.bind(this)}>Buy Secret</Button>
-        </ButtonToolbar>
-        <label>Debug Mode <input type="checkbox" onChange={this.onChangeDebugCheckbox.bind(this)} value={this.state.debugMode} /></label>
-        {this.renderModal()}
-      </div>
+      <Grid>
+        <Row>
+          <div>
+            <WumpusState />
+            <PitState />
+            <BatState />
+          </div>
+        </Row>
+        <Row>
+          <div className="col-xs-4">
+            <ButtonToolbar>
+              <Button onClick={this.onBuyArrow.bind(this)}>Buy Arrow</Button>
+              <Button onClick={this.onBuySecret.bind(this)}>Buy Secret</Button>
+            </ButtonToolbar>
+          </div>
+          <div className="col-xs-4">
+            <ItemCounts descriptions={coinDescriptions} count={this.props.coinCount} />
+            <ItemCounts descriptions={arrowDescriptions} count={this.props.arrowCount} />
+          </div>
+          <div className="col-xs-4">
+            <label>Debug Mode <input type="checkbox" onChange={this.onChangeDebugCheckbox.bind(this)} value={this.state.debugMode} /></label>
+          </div>
+          {this.renderModal()}
+        </Row>
+      </Grid>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {}
+  const { purse, arrows } = state;
+  return {
+    coinCount: purse.amount,
+    arrowCount: arrows.count
+  };
 }
 
 export default connect(mapStateToProps, {
