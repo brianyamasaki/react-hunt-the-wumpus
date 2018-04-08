@@ -1,7 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-# Hunt The Wumpus game
+This is a work in progress with missing features and bugs, some listed at the bottom of this document.
 
+# Hunt The Wumpus game
+ 
 This is written for the following specifications for Mr. McTavish's class at Bothell High School.
 
 The Wumpus lives in a cave of 30 rooms.  The rooms are hexagonal.  Each room has up to 3 tunnels leading to other rooms.  The rooms on the edges can be connected to the rooms on the opposite edge. The Diagram below demonstrates the cave layout and numbering (note that the player could travel from room 6 directly to room 30 or room 1, if room 6 connects to them).
@@ -78,3 +80,16 @@ You will also need to consider designing a user interface which will need to dis
 You will need to record the players name and let them choose which cave they want to play in before the game starts.
 
 When not playing, the top 10 high scores should be displayed and pressing enter starts the game.
+
+## Missing Features and Bugs of Note
+
+- Secrets engine not implemented
+- Scoring not implemented
+- High score engine not implemented
+- Hints engine not implemented
+- Fighting the wumpus is not implemented
+- Arrows will not be awarded after answering trivia questions
+- Trivia questions will be downloaded whenever the trivia dialog gets brought up. There is no trivia queue.
+- Correct answers for trivia questions will always be the last item because the questions are so hard I can't possibly answer them properly.
+- Hazards can be in the same room. Not checking if multiple pits or multiple bats are the same randomly chosen room - also not checking if the bats are in the same room as a pit.
+- Alternative Room view not finalized or implemented
