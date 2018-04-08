@@ -1,3 +1,4 @@
+export const PURSE_INIT = 'PURSE_INIT';
 export const PURSE_ADD = 'PURSE_ADD';
 export const PURSE_SUBTRACT = 'PURSE_SUBTRACT';
 
@@ -7,6 +8,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case PURSE_INIT: 
+      return {
+        amount: 0
+      }
     case PURSE_ADD: 
       return {
         amount: state.amount + action.payload
@@ -18,6 +23,12 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
+}
+
+export const purseInit = () => {
+  return {
+    type: PURSE_INIT
+  };
 }
 
 export const purseAdd = (amount) => {

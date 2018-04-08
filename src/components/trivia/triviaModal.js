@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 import DisplayQuestion from './displayQuestion';
 import { fetchTrivia } from '../../modules/trivia';
@@ -29,6 +29,12 @@ class AskTrivia extends Component <Props> {
   componentDidMount() {
     const { fetchTrivia, maxTries } = this.props;
     fetchTrivia(maxTries);
+  }
+
+  onClose() {
+    this.setState({
+      show: false
+    });
   }
 
   hideResult(success) {
@@ -74,6 +80,10 @@ class AskTrivia extends Component <Props> {
           isCorrect={this.succeeded.bind(this)} 
         />
       );
+    } else if (trivia.isLoading) {
+      return <p>Loading...</p>;
+    } else if (trivia.errorMsg) {
+      return <p>{trivia.errorMsg}</p>;
     }
   }
 
@@ -101,7 +111,7 @@ class AskTrivia extends Component <Props> {
           </Modal.Header>
           {this.renderQuestion()}
           <Modal.Footer>
-            {this.renderFooter()}
+            {this.renderFooter()} <Button onClick={this.onClose.bind(this)}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>

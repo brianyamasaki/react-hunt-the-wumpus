@@ -13,9 +13,16 @@ const getPlayerCurrentRoom = (state) => {
   return state.player.currentRoom;
 }
 
+const getGameOverState = (state) => {
+  return state.globalState.gameOver;
+}
+
 export const playerLegalMoves = createSelector(
-  [ getPlayerCurrentRoom, getMaze, getBoardRooms ],
-  (playerRoom, maze, board) => {
+  [ getPlayerCurrentRoom, getMaze, getBoardRooms, getGameOverState ],
+  (playerRoom, maze, board, isGameOver) => {
+    if (isGameOver) {
+      return [];
+    }
     if (playerRoom === '') {
       // return array of all rooms
       const all = [];

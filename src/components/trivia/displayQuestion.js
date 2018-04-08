@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import he from 'he';
 import { connect } from 'react-redux';
 import { purseSubtract } from '../../modules/purse';
-import { gameOver } from '../../modules/gameOver';
-import { isGameOver } from '../../modules/selectors/gameOver'
 
 import './displayQuestion.css';
 
@@ -17,25 +15,22 @@ class DisplayQuestion extends Component {
   };
 
   componentDidMount() {
-    const { question, purseSubtract } = this.props;
+    const { question } = this.props;
     if (question) {
       this.setState({
         question
       });
-      purseSubtract(1);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { isGameOver, gameOver } = this.props;
     if (nextProps.question !== this.state.question) {
       this.setState({
         question: nextProps.question
       });
-      this.props.purseSubtract(1);
-    }
-    if (isGameOver) {
-      gameOver('You ran out of coins');
+      if (nextProps.question) {
+        this.props.purseSubtract(1);
+      }
     }
     
   }
@@ -72,14 +67,7 @@ class DisplayQuestion extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    isGameOver: isGameOver(state)
-  }
-}
 
-export default connect(mapStateToProps, {
-  purseSubtract,
-  gameOver,
-  isGameOver
+export default connect(null, {
+  purseSubtract
 })(DisplayQuestion);

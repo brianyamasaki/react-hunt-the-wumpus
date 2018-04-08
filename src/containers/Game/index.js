@@ -10,6 +10,7 @@ import { playerMove } from '../../modules/player';
 import { fetchTrivia } from '../../modules/trivia';
 import Board2 from '../../components/Board2';
 import Dashboard from '../../components/dashboard';
+import GameOverModal from '../../components/modals/gameOverModal';
 
 import './index.css';
 
@@ -97,6 +98,7 @@ class Game extends Component {
         {this.renderMazesState()}
         {this.renderDashboard()}
         {this.renderBoard()}
+        <GameOverModal />
       </div>
     );
   }

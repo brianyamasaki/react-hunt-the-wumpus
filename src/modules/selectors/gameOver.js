@@ -4,7 +4,7 @@ const getPurseAmount = (state) => {
   return state.purse.amount;
 }
 
-export const isGameOver = createSelector(
+export const isOutOfCoin = createSelector(
   [ getPurseAmount ],
   ( amount ) => {
     if (amount < 0) {

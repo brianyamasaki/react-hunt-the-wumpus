@@ -9,7 +9,6 @@ import pitsReducer from './pits';
 import batsReducer from './bats';
 import purseReducer from './purse';
 import arrowsReducer from './arrows';
-import gameOverReducer from './gameOver';
 import globalStateReducer from './globalState';
 
 export default combineReducers({
@@ -23,6 +22,5 @@ export default combineReducers({
   bats: batsReducer,
   purse: purseReducer,
   arrows: arrowsReducer,
-  gameOver: gameOverReducer,
   globalState: globalStateReducer
 });

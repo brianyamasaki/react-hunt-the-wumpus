@@ -3,6 +3,8 @@ import { wumpusInit } from '../modules/wumpus';
 import { pitsInit } from '../modules/pits';
 import { batsInit } from '../modules/bats';
 import { playerInit } from '../modules/player';
+import { gameReset } from '../modules/globalState';
+import { purseInit } from '../modules/purse';
 
 export const FETCH_MAZE = "FETCH_MAZE";
 export const FETCH_MAZE_SUCCESS = "FETCH_MAZE_SUCCESS";
@@ -55,10 +57,12 @@ export const fetchMaze = url => dispatch => {
         payload: json
       });
       const maze = json.maze;
+      dispatch(gameReset());
       dispatch(wumpusInit(maze));
       dispatch(pitsInit(maze));
       dispatch(batsInit(maze));
       dispatch(playerInit());
+      dispatch(purseInit());
     })
     .catch(error => {
       dispatch({
