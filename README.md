@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+Instructions on how to build this are listed at the end.
+
 This is a work in progress with missing features and bugs, some listed at the bottom of this document.
 
 # Hunt The Wumpus game
@@ -93,3 +95,23 @@ When not playing, the top 10 high scores should be displayed and pressing enter 
 - Correct answers for trivia questions will always be the last item because the questions are so hard I can't possibly answer them properly.
 - Hazards can be in the same room. Not checking if multiple pits or multiple bats are the same randomly chosen room - also not checking if the bats are in the same room as a pit.
 - Alternative Room view not finalized or implemented
+
+# How to build this project
+
+Basic pre-requisites for this project are the following:
+
+- [Git](www.git-scm.com) source code management
+- [Node](www.nodejs.org) JavaScript development environment
+- Works great in Linux and MacOS. Windows may not build correctly unless long pathnames are turned on or the build directory is has a very short path length (Node paths can be very long). 
+
+The following copies the source code to your computer (replace ```<directory name>``` with whatever you want to name the source code directory)
+```
+git clone https://github.com/brianyamasaki/react-hunt-the-wumpus.git <directory name>
+```
+
+The following will build the project in debug mode, start the default browser and open a window and start the game.
+```
+cd <directory name>
+npm install
+npm start
+```
