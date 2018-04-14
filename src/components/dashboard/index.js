@@ -8,6 +8,7 @@ import PitState from './pitState';
 import BatState from './batState';
 import { arrowsAdd } from '../../modules/arrows'
 import { toggleDebugMode } from '../../modules/globalState';
+import { incrementMove } from '../../modules/player';
 
 const coinDescriptions = {
   singular: 'Coin',
@@ -18,6 +19,12 @@ const arrowDescriptions = {
   singular: 'Arrow',
   plural: 'Arrows'
 };
+
+const moveDescriptions = {
+  singular: 'Move',
+  plural: 'Moves'
+};
+
 class Dashboard extends Component {
   state = {
     showModal: false,
@@ -35,6 +42,7 @@ class Dashboard extends Component {
       minCorrect: 2,
       maxTries: 3
     });
+    this.props.incrementMove();
   }
 
   onBuySecret() {
@@ -43,7 +51,8 @@ class Dashboard extends Component {
       buySecret: true,
       minCorrect: 2,
       maxTries: 3
-    })
+    });
+    this.props.incrementMove();
   }
 
   onTriviaFinished(isSuccessful) {
@@ -62,19 +71,6 @@ class Dashboard extends Component {
     })
   }
 
-  renderModal() {
-    if (this.state.showModal) {
-      return (
-        <TriviaModal 
-        minCorrect={this.state.minCorrect}
-        maxTries={this.state.maxTries}
-        success={f => this.onTriviaFinished(f)}
-        show={true}
-        />
-      );
-    }
-  }
-
   onChangeDebugCheckbox() {
     this.setState({
       debugMode: !this.state.debugMode
@@ -83,6 +79,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { isGameOver, coinCount } = this.props;
     return (
       <Grid>
         <Row>
@@ -95,18 +92,34 @@ class Dashboard extends Component {
         <Row>
           <div className="col-xs-4">
             <ButtonToolbar>
-              <Button onClick={this.onBuyArrow.bind(this)}>Buy Arrow</Button>
-              <Button onClick={this.onBuySecret.bind(this)}>Buy Secret</Button>
+              <Button 
+                onClick={this.onBuyArrow.bind(this)} 
+                disabled={isGameOver || coinCount < this.state.minCorrect}
+              >
+                Buy Arrow
+              </Button>
+              <Button 
+                onClick={this.onBuySecret.bind(this)} 
+                disabled={true /*isGameOver || coinCount < this.state.minCorrect */}
+              >
+                Buy Secret
+              </Button>
             </ButtonToolbar>
           </div>
           <div className="col-xs-4">
             <ItemCounts descriptions={coinDescriptions} count={this.props.coinCount} />
             <ItemCounts descriptions={arrowDescriptions} count={this.props.arrowCount} />
+            <ItemCounts descriptions={moveDescriptions} count={this.props.moveCount} />
           </div>
           <div className="col-xs-4">
             <label>Debug Mode <input type="checkbox" onChange={this.onChangeDebugCheckbox.bind(this)} value={this.state.debugMode} /></label>
           </div>
-          {this.renderModal()}
+          <TriviaModal 
+            minCorrect={this.state.minCorrect}
+            maxTries={this.state.maxTries}
+            success={f => this.onTriviaFinished(f)}
+            show={this.state.showModal}
+          />
         </Row>
       </Grid>
     )
@@ -114,14 +127,17 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  const { purse, arrows } = state;
+  const { purse, arrows, player, globalState } = state;
   return {
     coinCount: purse.amount,
-    arrowCount: arrows.count
+    arrowCount: arrows.count,
+    moveCount: player.moveCount,
+    isGameOver: globalState.gameOver
   };
 }
 
 export default connect(mapStateToProps, {
   arrowsAdd,
-  toggleDebugMode
+  toggleDebugMode,
+  incrementMove
 })(Dashboard);

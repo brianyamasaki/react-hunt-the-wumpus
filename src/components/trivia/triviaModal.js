@@ -15,20 +15,23 @@ class AskTrivia extends Component <Props> {
     minCorrect: 2,
     maxTries: 3,
     success: (f) => console.log(f ? 'success' : 'failed'),
-    show: true
+    show: false
   }
 
   state = {
     questionIndex: 0,
     correctAnswers: 0,
     attempts: 0,
-    show: true,
+    show: false,
     showResult: ''
   };
 
-  componentDidMount() {
-    const { fetchTrivia, maxTries } = this.props;
-    fetchTrivia(maxTries);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.show !== this.state.show) {
+      this.setState({
+        show: nextProps.show
+      });
+    }
   }
 
   onClose() {

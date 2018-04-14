@@ -90,11 +90,9 @@ When not playing, the top 10 high scores should be displayed and pressing enter 
 - High score engine not implemented
 - Hints engine not implemented
 - Fighting the wumpus is not implemented
-- Arrows will not be awarded after answering trivia questions
-- Trivia questions will be downloaded whenever the trivia dialog gets brought up. There is no trivia queue.
 - Correct answers for trivia questions will always be the last item because the questions are so hard I can't possibly answer them properly.
 - Hazards can be in the same room. Not checking if multiple pits or multiple bats are the same randomly chosen room - also not checking if the bats are in the same room as a pit.
-- Alternative Room view not finalized or implemented
+- Alternative Room view not implemented
 
 # How to build this project
 

@@ -1,9 +1,11 @@
 export const PLAYER_MOVE = 'PLAYER_MOVE';
 export const PLAYER_INIT = 'PLAYER_INIT';
+export const PLAYER_INCREMENT_MOVE = 'PLAYER_INCREMENT_MOVE';
 
 const initialState = {
   currentRoom: '',
-  roomIndex: ''
+  roomIndex: '',
+  moveCount: 0
 };
 
 export default (state = initialState, action) => {
@@ -11,7 +13,13 @@ export default (state = initialState, action) => {
     case PLAYER_MOVE:
       return {
         roomIndex: action.payload,
-        currentRoom: action.payload + 1
+        currentRoom: action.payload + 1,
+        moveCount: state.moveCount + 1
+      };
+    case PLAYER_INCREMENT_MOVE:
+      return {
+        ...state,
+        moveCount: state.moveCount + 1
       };
     case PLAYER_INIT:
       return initialState;
@@ -32,3 +40,9 @@ export const playerInit = () => {
     type: PLAYER_INIT
   }
 }
+
+export const incrementMove = () => (
+  {
+    type: PLAYER_INCREMENT_MOVE
+  }
+)

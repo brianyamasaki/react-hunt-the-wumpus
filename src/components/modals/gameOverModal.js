@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
 import { isOutOfCoin } from '../../modules/selectors/gameOver';
 import { gameOver } from '../../modules/globalState';
+import { getPlayerPitState, PLAYER_IN_PIT } from '../../modules/selectors/pits';
 
 class GameOverModal extends Component {
   state = {
@@ -13,6 +14,9 @@ class GameOverModal extends Component {
     const { gameOver } = this.props;
     if (nextProps.isOutOfCoin !== this.props.isOutOfCoin) {
       gameOver('You ran out of coins');
+    }
+    if (nextProps.pitState === PLAYER_IN_PIT) {
+      gameOver('You fell into a pit');
     }
     if (nextProps.isGameOver !== this.state.show) {
       this.setState({
@@ -37,7 +41,7 @@ class GameOverModal extends Component {
             {this.props.message}
           <Modal.Footer>
             <Button bsStyle="primary" onClick={this.onClickClose.bind(this)}>
-              Dummy Button
+              Close
             </Button>
           </Modal.Footer>
         </Modal>
@@ -50,6 +54,7 @@ const mapStateToProps = state => {
   const { globalState } = state;
   return {
     isOutOfCoin: isOutOfCoin(state),
+    pitState: getPlayerPitState(state),
     isGameOver: globalState.gameOver,
     message: globalState.gameOverMessage
   };
